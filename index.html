@@ -7,15 +7,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #121212;
-      color: #fff;
+      background-color: #faf3e0; /* Fondo en color pastel cálido */
+      color: #333;
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       text-align: center;
     }
     h1 {
-      color: #e50914;
+      color: #ff6f61; /* Título en color coral */
       font-weight: bold;
       margin-top: 40px;
       font-size: 3em;
@@ -30,17 +30,17 @@
       margin-top: 30px;
     }
     .video-item {
-      background-color: #333;
+      background-color: #fdf1e7; /* Color de fondo suave para los items */
       border-radius: 10px;
       overflow: hidden;
       width: 280px;
       margin-bottom: 20px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
     .video-item:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 25px rgba(255, 105, 97, 0.5);
     }
     .video-item iframe {
       width: 100%;
@@ -49,16 +49,17 @@
     }
     .video-item span {
       display: block;
-      background-color: #e50914;
+      background: linear-gradient(to right, #ffb6b9, #ff6f61); /* Degradado cálido para el texto */
       color: white;
       font-size: 18px;
       padding: 10px 0;
       font-weight: bold;
       letter-spacing: 1px;
+      text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.7);
     }
     .video-item button {
       margin: 10px 0;
-      background-color: #e50914;
+      background: linear-gradient(to right, #ff6f61, #ffb6b9); /* Degradado para el botón */
       color: white;
       padding: 10px;
       font-size: 16px;
@@ -66,11 +67,13 @@
       cursor: pointer;
       width: 100%;
       border-radius: 5px;
-      transition: background-color 0.3s, transform 0.2s ease;
+      transition: background-color 0.3s, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 105, 97, 0.7);
     }
     .video-item button:hover {
-      background-color: #b50d11;
+      background: linear-gradient(to right, #ffb6b9, #ff6f61);
       transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
     }
     .video-item button:focus {
       outline: none;
@@ -78,17 +81,17 @@
     .video-item img {
       width: 100%;
       height: auto;
-      border-bottom: 3px solid #e50914;
+      border-bottom: 3px solid #ff6f61;
     }
     .video-item h3 {
-      color: #fff;
+      color: #333;
       font-size: 20px;
       margin-top: 10px;
     }
     .video-item .episode-number {
       font-size: 16px;
       font-weight: 500;
-      color: #bbb;
+      color: #888;
     }
   </style>
 </head>
@@ -141,9 +144,9 @@
 
     <!-- Capítulo 7 -->
     <div class="video-item">
-      <iframe src="https://rumble.com/embed/v6slxwx/?pub=4lcv1n" allowfullscreen></iframe>
+      <iframe src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen></iframe>
       <span>1x7</span>
-      <button onclick="window.open('https://rumble.com/embed/v6slxwx/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+      <button onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank')">Ver en Rave</button>
     </div>
   </div>
 
