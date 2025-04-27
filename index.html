@@ -4,34 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mr. Queen - Catálogo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #111;
+      background-color: #121212;
       color: #fff;
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       text-align: center;
     }
     h1 {
       color: #e50914;
-      margin-top: 20px;
+      font-weight: bold;
+      margin-top: 40px;
+      font-size: 3em;
+      letter-spacing: 2px;
     }
     .video-gallery {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 30px;
       padding: 20px;
+      margin-top: 30px;
     }
     .video-item {
       background-color: #333;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
       width: 280px;
       margin-bottom: 20px;
-      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    }
+    .video-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
     }
     .video-item iframe {
       width: 100%;
@@ -45,6 +54,7 @@
       font-size: 18px;
       padding: 10px 0;
       font-weight: bold;
+      letter-spacing: 1px;
     }
     .video-item button {
       margin: 10px 0;
@@ -56,10 +66,11 @@
       cursor: pointer;
       width: 100%;
       border-radius: 5px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s ease;
     }
     .video-item button:hover {
       background-color: #b50d11;
+      transform: scale(1.05);
     }
     .video-item button:focus {
       outline: none;
@@ -68,6 +79,16 @@
       width: 100%;
       height: auto;
       border-bottom: 3px solid #e50914;
+    }
+    .video-item h3 {
+      color: #fff;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    .video-item .episode-number {
+      font-size: 16px;
+      font-weight: 500;
+      color: #bbb;
     }
   </style>
 </head>
@@ -117,7 +138,19 @@
       <span>1x6</span>
       <button onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank')">Ver en Rave</button>
     </div>
+
+    <!-- Capítulo 7 -->
+    <div class="video-item">
+      <iframe src="https://rumble.com/embed/v6slxwx/?pub=4lcv1n" allowfullscreen></iframe>
+      <span>1x7</span>
+      <button onclick="window.open('https://rumble.com/embed/v6slxwx/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+    </div>
   </div>
+
+  <script>
+    // Optional JS for future enhancements (like animations or other features)
+    // For now, we leave it empty.
+  </script>
 
 </body>
 </html>
