@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de Capítulos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea { width: 100%; height: 300px; margin-top: 20px; }
+        button { padding: 10px 15px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <h1>Generador de Capítulos</h1>
+    <button id="iniciar">Comenzar a Generar</button>
+    <textarea id="resultado" placeholder="Aquí aparecerá el código generado..." readonly></textarea>
+
+    <script>
+        document.getElementById('iniciar').addEventListener('click', function() {
+            let codigoFinal = '';
+            let continuar = true;
+            
+            while(continuar) {
+                const numero = prompt("Introduce el número del episodio (ej: 1):");
+                if (numero === null) break;
+                
+                const badge = prompt("Introduce el número para el badge (puede ser igual que el episodio):", numero);
+                if (badge === null) break;
+                
+                const titulo = prompt("Introduce el título del episodio:");
+                if (titulo === null) break;
+                
+                const sipnosis = prompt("Introduce la sipnosis:");
+                if (sipnosis === null) break;
+                
+                const enlaceEmbed = prompt("Introduce el enlace embed (iframe):");
+                if (enlaceEmbed === null) break;
+                
+                const enlaceNormal = prompt("Introduce el enlace normal para el botón:");
+                if (enlaceNormal === null) break;
+                
+                // Generar el código HTML
+                const codigo = `
+<!-- Capítulo ${numero} -->
+<div class="video-item">
+    <span class="episode-badge">Episodio ${badge}</span>
+    <iframe src="${enlaceEmbed}" allowfullscreen></iframe>
+    <div class="video-info">
+        <h3>${titulo}</h3>
+        <p>${sipnosis}</p>
+        <button class="watch-btn" onclick="window.open('${enlaceNormal}', '_blank')">Ver ahora</button>
+    </div>
+</div>\n\n`;
+                
+                codigoFinal += codigo;
+                
+                continuar = confirm("¿Deseas añadir otro capítulo?");
+                if (!continuar) {
+                    document.getElementById('resultado').value = codigoFinal;
+                    alert("Código generado con éxito. Copia el contenido del cuadro de texto.");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
