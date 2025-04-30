@@ -141,12 +141,12 @@
       box-shadow: 0 5px 15px rgba(200, 142, 167, 0.3);
     }
     
-    .season-selector {
+    .section-selector {
       text-align: center;
       margin: 20px 0;
     }
     
-    .season-btn {
+    .section-btn {
       background-color: transparent;
       border: 1px solid var(--primary);
       color: var(--primary);
@@ -157,7 +157,7 @@
       transition: all 0.3s ease;
     }
     
-    .season-btn.active, .season-btn:hover {
+    .section-btn.active, .section-btn:hover {
       background-color: var(--primary);
       color: white;
     }
@@ -167,6 +167,10 @@
       padding: 30px 0;
       color: var(--primary);
       font-size: 0.9rem;
+    }
+    
+    .hidden {
+      display: none;
     }
     
     @media (max-width: 768px) {
@@ -187,118 +191,137 @@
       <p class="subtitle">Una historia de amor entre épocas</p>
     </header>
     
-    <div class="season-selector">
-      <button class="season-btn active">Temporada 1</button>
+    <div class="section-selector">
+      <button class="section-btn active" data-section="series">Mr. Queen</button>
+      <button class="section-btn" data-section="movies">Películas</button>
     </div>
     
-    <div class="video-gallery">
-      <!-- Capítulo 1 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 1</span>
-        <iframe src="https://rumble.com/embed/v6qef0l/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>El comienzo del viaje</h3>
-          <p>Un chef moderno se encuentra en el cuerpo de una reina Joseon.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qef0l/?pub=4lcv1n', '_blank')">Ver ahora</button>
+    <!-- Sección de Mr. Queen -->
+    <div id="series-section">
+      <div class="video-gallery">
+        <!-- Capítulo 1 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 1</span>
+          <iframe src="https://rumble.com/embed/v6qef0l/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>El comienzo del viaje</h3>
+            <p>Un chef moderno se encuentra en el cuerpo de una reina Joseon.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qef0l/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
-      
-      <!-- Capítulo 2 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 2</span>
-        <iframe src="https://rumble.com/embed/v6qeupf/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Ajustándose a la vida real</h3>
-          <p>La reina intenta adaptarse a su nueva vida en la corte.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeupf/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        
+        <!-- Capítulo 2 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 2</span>
+          <iframe src="https://rumble.com/embed/v6qeupf/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>Ajustándose a la vida real</h3>
+            <p>La reina intenta adaptarse a su nueva vida en la corte.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeupf/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
-      
-      <!-- Capítulo 3 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 3</span>
-        <iframe src="https://rumble.com/embed/v6qew81/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Secretos de la corte</h3>
-          <p>Los primeros conflictos políticos comienzan a surgir.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qew81/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        
+        <!-- Capítulo 3 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 3</span>
+          <iframe src="https://rumble.com/embed/v6qew81/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>Secretos de la corte</h3>
+            <p>Los primeros conflictos políticos comienzan a surgir.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qew81/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
-      
-      <!-- Capítulo 4 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 4</span>
-        <iframe src="https://rumble.com/embed/v6qeyvr/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>El banquete real</h3>
-          <p>La reina sorprende a todos con sus habilidades culinarias.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeyvr/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        
+        <!-- Capítulo 4 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 4</span>
+          <iframe src="https://rumble.com/embed/v6qeyvr/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>El banquete real</h3>
+            <p>La reina sorprende a todos con sus habilidades culinarias.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeyvr/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
-      
-      <!-- Capítulo 5 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 5</span>
-        <iframe src="https://rumble.com/embed/v6qf1ct/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Confesiones inesperadas</h3>
-          <p>Los sentimientos comienzan a florecer en medio del caos.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1ct/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        
+        <!-- Capítulo 5 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 5</span>
+          <iframe src="https://rumble.com/embed/v6qf1ct/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>Confesiones inesperadas</h3>
+            <p>Los sentimientos comienzan a florecer en medio del caos.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1ct/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
-      
-      <!-- Capítulo 6 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 6</span>
-        <iframe src="https://rumble.com/embed/v6qf1o3/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>La conspiración</h3>
-          <p>Una amenaza se cierne sobre la reina y el rey.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        
+        <!-- Capítulo 6 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 6</span>
+          <iframe src="https://rumble.com/embed/v6qf1o3/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>La conspiración</h3>
+            <p>Una amenaza se cierne sobre la reina y el rey.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
-      
-      <!-- Capítulo 7 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 7</span>
-        <iframe src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Decisiones cruciales</h3>
-          <p>La reina debe elegir entre su seguridad y la verdad.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        
+        <!-- Capítulo 7 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 7</span>
+          <iframe src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>Decisiones cruciales</h3>
+            <p>La reina debe elegir entre su seguridad y la verdad.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Capítulo 8 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 8</span>
-        <iframe src="https://rumble.com/embed/v6qfy37/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Alianzas peligrosas</h3>
-          <p>La reina se acerca a alguien inesperado para obtener ayuda.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfy37/?pub=4lcv1n', '_blank')">Ver ahora</button>
+        <!-- Capítulo 8 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 8</span>
+          <iframe src="https://rumble.com/embed/v6qfy37/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>Alianzas peligrosas</h3>
+            <p>La reina se acerca a alguien inesperado para obtener ayuda.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfy37/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
+        </div>
+
+        <!-- Capítulo 9 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 9</span>
+          <iframe src="https://rumble.com/embed/v6qidz7/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>El juego del poder</h3>
+            <p>Las tensiones en la corte alcanzan su punto máximo. </p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qidz7/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
+        </div>
+
+        <!-- Capítulo 10 -->
+        <div class="video-item">
+          <span class="episode-badge">Episodio 10</span>
+          <iframe src="https://rumble.com/embed/v6qieaf/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>Revelaciones impactantes</h3>
+            <p>Un secreto del pasado cambia todo.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qieaf/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
       </div>
-
-      <!-- Capítulo 9 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 9</span>
-        <iframe src="https://rumble.com/embed/v6qidz7/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>El juego del poder</h3>
-          <p>Las tensiones en la corte alcanzan su punto máximo. </p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qidz7/?pub=4lcv1n', '_blank')">Ver ahora</button>
-        </div>
-      </div>
-
-      <!-- Capítulo 10 -->
-      <div class="video-item">
-        <span class="episode-badge">Episodio 10</span>
-        <iframe src="https://rumble.com/embed/v6qieaf/?pub=4lcv1n" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Revelaciones impactantes</h3>
-          <p>Un secreto del pasado cambia todo.</p>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qieaf/?pub=4lcv1n', '_blank')">Ver ahora</button>
+    </div>
+    
+    <!-- Sección de Películas -->
+    <div id="movies-section" class="hidden">
+      <div class="video-gallery">
+        <div class="video-item">
+          <span class="episode-badge">Película</span>
+          <iframe src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>20th Century Girl</h3>
+            <p>Una emotiva historia de amor adolescente en los años 90 que explora los altibajos del primer amor.</p>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank')">Ver ahora</button>
+          </div>
         </div>
       </div>
     </div>
@@ -316,12 +339,21 @@
       });
     });
     
-    // Selector de temporada (funcionalidad básica)
-    document.querySelectorAll('.season-btn').forEach(btn => {
+    // Selector de sección
+    document.querySelectorAll('.section-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+        // Quitar active de todos los botones
+        document.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
+        // Añadir active al botón clickeado
         this.classList.add('active');
-        // Aquí podrías añadir lógica para cambiar el contenido según la temporada
+        
+        // Ocultar todas las secciones
+        document.getElementById('series-section').classList.add('hidden');
+        document.getElementById('movies-section').classList.add('hidden');
+        
+        // Mostrar la sección correspondiente
+        const section = this.getAttribute('data-section');
+        document.getElementById(section + '-section').classList.remove('hidden');
       });
     });
   </script>
