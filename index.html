@@ -97,17 +97,6 @@
       z-index: 2;
     }
     
-    .video-item::after {
-      content: "Cargando...";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      z-index: 1;
-      font-size: 0.9rem;
-    }
-    
     .episode-badge {
       position: absolute;
       top: 10px;
@@ -511,13 +500,6 @@
         });
         document.getElementById(seriesId).classList.remove('hidden');
       }
-
-      // Ocultar mensaje de carga cuando el iframe se carga
-      document.querySelectorAll('iframe').forEach(iframe => {
-        iframe.addEventListener('load', function() {
-          this.parentNode.querySelector('.video-item::after').style.display = 'none';
-        });
-      });
     });
   </script>
 </body>
