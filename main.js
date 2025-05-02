@@ -1,86 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.container');
   
-  // Cargar iframes lazy cuando son visibles
+  // Improved Lazy Loading
   const lazyLoadIframes = () => {
-    const lazyIframes = [].slice.call(document.querySelectorAll("iframe.lazy-iframe"));
+    const lazyIframes = document.querySelectorAll('iframe.lazy-iframe');
     
-    if ("IntersectionObserver" in window) {
-      let lazyIframeObserver = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
+    if ('IntersectionObserver' in window) {
+      const iframeObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            let lazyIframe = entry.target;
-            lazyIframe.src = lazyIframe.dataset.src;
-            lazyIframeObserver.unobserve(lazyIframe);
+            const iframe = entry.target;
+            const container = iframe.parentElement;
+            
+            iframe.src = iframe.dataset.src;
+            
+            iframe.onload = () => {
+              iframe.classList.add('loaded');
+              // Remove container styles after load
+              container.style.background = 'none';
+              container.style.removeProperty('position');
+              container.style.removeProperty('height');
+            };
+            
+            observer.unobserve(iframe);
           }
         });
+      }, {
+        rootMargin: '200px',
+        threshold: 0.1
       });
 
-      lazyIframes.forEach(function(lazyIframe) {
-        lazyIframeObserver.observe(lazyIframe);
+      lazyIframes.forEach(iframe => {
+        iframeObserver.observe(iframe);
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      lazyIframes.forEach(iframe => {
+        iframe.src = iframe.dataset.src;
       });
     }
   };
-  
-  // Delegación de eventos para toda la página
+
+  // Delegación de eventos
   container.addEventListener('click', (e) => {
     const sectionBtn = e.target.closest('.section-btn');
     const seriesBtn = e.target.closest('.series-btn');
     const backToTop = e.target.closest('.back-to-top');
     
-    if (sectionBtn) {
-      handleSectionChange(sectionBtn);
-    }
-    
-    if (seriesBtn) {
-      handleSeriesChange(seriesBtn);
-    }
-
+    if (sectionBtn) handleSectionChange(sectionBtn);
+    if (seriesBtn) handleSeriesChange(seriesBtn);
     if (backToTop) {
       e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
   
-  // Mostrar/ocultar botón "Volver arriba" al hacer scroll
+  // Scroll event for back-to-top button
   window.addEventListener('scroll', () => {
     const backToTop = document.querySelector('.back-to-top');
-    if (window.scrollY > 300) {
-      backToTop.style.display = 'flex';
-    } else {
-      backToTop.style.display = 'none';
-    }
+    backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
   });
 
-  // Manejar cambio de sección principal
+  // Section change handler
   function handleSectionChange(btn) {
-    const currentActive = document.querySelector('.section-btn.active');
-    if (currentActive) currentActive.classList.remove('active');
+    document.querySelector('.section-btn.active')?.classList.remove('active');
     btn.classList.add('active');
     
-    const sectionId = btn.dataset.section + '-section';
+    const sectionId = `${btn.dataset.section}-section`;
     document.querySelectorAll('main > section').forEach(section => {
       section.classList.add('hidden');
     });
     document.getElementById(sectionId).classList.remove('hidden');
   }
   
-  // Manejar cambio de serie
+  // Series change handler
   function handleSeriesChange(btn) {
-    const currentActive = document.querySelector('.series-btn.active');
-    if (currentActive) currentActive.classList.remove('active');
+    document.querySelector('.series-btn.active')?.classList.remove('active');
     btn.classList.add('active');
     
-    const seriesId = btn.dataset.series + '-series';
+    const seriesId = `${btn.dataset.series}-series`;
     document.querySelectorAll('.series-subsection').forEach(subsection => {
       subsection.classList.add('hidden');
     });
     document.getElementById(seriesId).classList.remove('hidden');
   }
   
-  // Inicializar lazy loading de iframes
+  // Initialize lazy loading
   lazyLoadIframes();
 });
