@@ -87,46 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize lazy loading
   lazyLoadIframes();
-  
-// Modifica la función lazyLoadIframes
-const lazyLoadIframes = () => {
-  const lazyIframes = document.querySelectorAll('iframe.lazy-iframe');
-  const isMobile = window.innerWidth <= 768;
-
-  if ('IntersectionObserver' in window) {
-    const observerOptions = isMobile ? {
-      rootMargin: '50px',
-      threshold: 0.01
-    } : {
-      rootMargin: '200px',
-      threshold: 0.1
-    };
-
-    const iframeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const iframe = entry.target;
-          iframe.src = iframe.dataset.src;
-          
-          iframe.onload = () => {
-            iframe.classList.add('loaded');
-            iframe.parentElement.style.background = 'none';
-          };
-          
-          iframeObserver.unobserve(iframe);
-        }
-      });
-    }, observerOptions);
-
-    lazyIframes.forEach(iframe => {
-      iframeObserver.observe(iframe);
-    });
-  } else {
-    // Fallback más ligero para móviles antiguos
-    lazyIframes.forEach(iframe => {
-      setTimeout(() => {
-        iframe.src = iframe.dataset.src;
-      }, 100);
-    });
-  }
 };
