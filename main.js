@@ -1,67 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.container');
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-  // Lazy Loading optimizado para móvil
+  
+  // Improved Lazy Loading
   const lazyLoadIframes = () => {
     const lazyIframes = document.querySelectorAll('iframe.lazy-iframe');
     
     if ('IntersectionObserver' in window) {
-      const observerOptions = isMobile ? {
-        rootMargin: '100px 0px',
-        threshold: 0.01
-      } : {
-        rootMargin: '300px 0px',
-        threshold: 0.1
-      };
-
-      const iframeObserver = new IntersectionObserver((entries) => {
+      const iframeObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const iframe = entry.target;
+            const container = iframe.parentElement;
+            
             iframe.src = iframe.dataset.src;
             
             iframe.onload = () => {
               iframe.classList.add('loaded');
-              // Elimina el placeholder después de cargar
-              const container = iframe.parentElement;
+              // Remove container styles after load
               container.style.background = 'none';
+              container.style.removeProperty('position');
               container.style.removeProperty('height');
             };
             
-            iframeObserver.unobserve(iframe);
+            observer.unobserve(iframe);
           }
         });
-      }, observerOptions);
+      }, {
+        rootMargin: '200px',
+        threshold: 0.1
+      });
 
-      // Carga los primeros 2 iframes inmediatamente en móvil
-      if (isMobile) {
-        const firstTwo = Array.from(lazyIframes).slice(0, 2);
-        firstTwo.forEach(iframe => {
-          iframe.src = iframe.dataset.src;
-          iframeObserver.unobserve(iframe);
-        });
-        
-        // Observa solo los iframes restantes
-        Array.from(lazyIframes).slice(2).forEach(iframe => {
-          iframeObserver.observe(iframe);
-        });
-      } else {
-        lazyIframes.forEach(iframe => {
-          iframeObserver.observe(iframe);
-        });
-      }
+      lazyIframes.forEach(iframe => {
+        iframeObserver.observe(iframe);
+      });
     } else {
-      // Fallback para navegadores antiguos
-      lazyIframes.forEach((iframe, index) => {
-        setTimeout(() => {
-          iframe.src = iframe.dataset.src;
-        }, isMobile ? index * 300 : index * 100);
+      // Fallback for browsers without IntersectionObserver
+      lazyIframes.forEach(iframe => {
+        iframe.src = iframe.dataset.src;
       });
     }
   };
 
-  // Resto del código permanece igual...
+  // Delegación de eventos
   container.addEventListener('click', (e) => {
     const sectionBtn = e.target.closest('.section-btn');
     const seriesBtn = e.target.closest('.series-btn');
@@ -74,12 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
-
+  
+  // Scroll event for back-to-top button
   window.addEventListener('scroll', () => {
     const backToTop = document.querySelector('.back-to-top');
     backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
   });
 
+  // Section change handler
   function handleSectionChange(btn) {
     document.querySelector('.section-btn.active')?.classList.remove('active');
     btn.classList.add('active');
@@ -91,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById(sectionId).classList.remove('hidden');
   }
   
+  // Series change handler
   function handleSeriesChange(btn) {
     document.querySelector('.series-btn.active')?.classList.remove('active');
     btn.classList.add('active');
@@ -102,12 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById(seriesId).classList.remove('hidden');
   }
   
-  // Inicialización optimizada
-  if (document.fonts) {
-    document.fonts.ready.then(() => {
-      lazyLoadIframes();
-    });
-  } else {
-    setTimeout(lazyLoadIframes, 500);
-  }
+  // Initialize lazy loading
+  lazyLoadIframes();
 });
