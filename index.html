@@ -15,13 +15,18 @@
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
     
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
       background-color: var(--light);
       color: var(--text);
       font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
       line-height: 1.6;
+      min-height: 100vh;
     }
     
     .container {
@@ -72,7 +77,7 @@
       background-color: white;
       border-radius: 12px;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: var(--shadow);
       position: relative;
     }
@@ -87,6 +92,20 @@
       height: 160px;
       border: none;
       display: block;
+      background-color: #000;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .video-item::after {
+      content: "Cargando...";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      z-index: 1;
+      font-size: 0.9rem;
     }
     
     .episode-badge {
@@ -99,7 +118,7 @@
       border-radius: 20px;
       font-size: 0.8rem;
       font-weight: 500;
-      z-index: 1;
+      z-index: 3;
     }
     
     .video-info {
@@ -194,6 +213,30 @@
       display: none;
     }
     
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .back-to-top:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+    
     @media (max-width: 768px) {
       h1 {
         font-size: 2.2rem;
@@ -201,6 +244,26 @@
       
       .video-gallery {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+      }
+      
+      .section-btn, .series-btn {
+        padding: 6px 15px;
+        margin: 0 3px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .video-gallery {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -209,216 +272,251 @@
   <div class="container">
     <header>
       <h1>RaveDramas</h1>
-      <p class="subtitle">Una historia de amor entre series y peliculas</p>
+      <p class="subtitle">Una historia de amor entre series y películas</p>
     </header>
     
-    <div class="section-selector">
-      <button class="section-btn active" data-section="series">Series</button>
+    <nav class="section-selector" aria-label="Secciones principales">
+      <button class="section-btn active" data-section="series" aria-current="page">Series</button>
       <button class="section-btn" data-section="movies">Películas</button>
-    </div>
+    </nav>
     
-    <!-- Sección de Series -->
-    <div id="series-section">
-      <div class="series-selector">
-        <button class="series-btn active" data-series="mr-queen">Mr. Queen</button>
-        <button class="series-btn" data-series="propuesta-laboral">Propuesta Laboral</button>
-      </div>
+    <main>
+      <!-- Sección de Series -->
+      <section id="series-section">
+        <div class="series-selector">
+          <button class="series-btn active" data-series="mr-queen" aria-current="page">Mr. Queen</button>
+          <button class="series-btn" data-series="propuesta-laboral">Propuesta Laboral</button>
+        </div>
+        
+        <!-- Subsección de Mr. Queen -->
+        <article id="mr-queen-series" class="series-subsection">
+          <div class="video-gallery">
+            
+            <!-- Capítulo 1 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 1</span>
+              <iframe src="https://rumble.com/embed/v6qef0l/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 1 - El comienzo del viaje"></iframe>
+              <div class="video-info">
+                <h3>El comienzo del viaje</h3>
+                <p>Un chef moderno se encuentra en el cuerpo de una reina Joseon.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qef0l/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+            
+            <!-- Capítulo 2 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 2</span>
+              <iframe src="https://rumble.com/embed/v6qeupf/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 2 - Ajustándose a la vida real"></iframe>
+              <div class="video-info">
+                <h3>Ajustándose a la vida real</h3>
+                <p>La reina intenta adaptarse a su nueva vida en la corte.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeupf/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+            
+            <!-- Capítulo 3 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 3</span>
+              <iframe src="https://rumble.com/embed/v6qew81/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 3 - Secretos de la corte"></iframe>
+              <div class="video-info">
+                <h3>Secretos de la corte</h3>
+                <p>Los primeros conflictos políticos comienzan a surgir.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qew81/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+            
+            <!-- Capítulo 4 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 4</span>
+              <iframe src="https://rumble.com/embed/v6qeyvr/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 4 - El banquete real"></iframe>
+              <div class="video-info">
+                <h3>El banquete real</h3>
+                <p>La reina sorprende a todos con sus habilidades culinarias.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeyvr/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+            
+            <!-- Capítulo 5 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 5</span>
+              <iframe src="https://rumble.com/embed/v6qf1ct/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 5 - Confesiones inesperadas"></iframe>
+              <div class="video-info">
+                <h3>Confesiones inesperadas</h3>
+                <p>Los sentimientos comienzan a florecer en medio del caos.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1ct/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+            
+            <!-- Capítulo 6 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 6</span>
+              <iframe src="https://rumble.com/embed/v6qf1o3/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 6 - La conspiración"></iframe>
+              <div class="video-info">
+                <h3>La conspiración</h3>
+                <p>Una amenaza se cierne sobre la reina y el rey.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+            
+            <!-- Capítulo 7 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 7</span>
+              <iframe src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 7 - Decisiones cruciales"></iframe>
+              <div class="video-info">
+                <h3>Decisiones cruciales</h3>
+                <p>La reina debe elegir entre su seguridad y la verdad.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+
+            <!-- Capítulo 8 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 8</span>
+              <iframe src="https://rumble.com/embed/v6qfy37/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 8 - Alianzas peligrosas"></iframe>
+              <div class="video-info">
+                <h3>Alianzas peligrosas</h3>
+                <p>La reina se acerca a alguien inesperado para obtener ayuda.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfy37/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+
+            <!-- Capítulo 9 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 9</span>
+              <iframe src="https://rumble.com/embed/v6qidz7/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 9 - El juego del poder"></iframe>
+              <div class="video-info">
+                <h3>El juego del poder</h3>
+                <p>Las tensiones en la corte alcanzan su punto máximo.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qidz7/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+
+            <!-- Capítulo 10 -->
+            <article class="video-item">
+              <span class="episode-badge">Episodio 10</span>
+              <iframe src="https://rumble.com/embed/v6qieaf/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Mr. Queen Episodio 10 - Revelaciones impactantes"></iframe>
+              <div class="video-info">
+                <h3>Revelaciones impactantes</h3>
+                <p>Un secreto del pasado cambia todo.</p>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qieaf/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+              </div>
+            </article>
+          </div>
+        </article>
+
+        <!-- Subsección de Propuesta Laboral -->
+        <article id="propuesta-laboral-series" class="series-subsection hidden">
+          <div class="video-gallery">
+            <!-- Contenido de Propuesta Laboral -->
+          </div>
+        </article>
+      </section>
       
-      <!-- Subsección de Mr. Queen -->
-      <div id="mr-queen-series" class="series-subsection">
+      <!-- Sección de Películas -->
+      <section id="movies-section" class="hidden">
         <div class="video-gallery">
-          <!-- Capítulo 1 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 1</span>
-            <iframe src="https://rumble.com/embed/v6qef0l/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>El comienzo del viaje</h3>
-              <p>Un chef moderno se encuentra en el cuerpo de una reina Joseon.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qef0l/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          
-          <!-- Capítulo 2 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 2</span>
-            <iframe src="https://rumble.com/embed/v6qeupf/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>Ajustándose a la vida real</h3>
-              <p>La reina intenta adaptarse a su nueva vida en la corte.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeupf/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          
-          <!-- Capítulo 3 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 3</span>
-            <iframe src="https://rumble.com/embed/v6qew81/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>Secretos de la corte</h3>
-              <p>Los primeros conflictos políticos comienzan a surgir.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qew81/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          
-          <!-- Capítulo 4 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 4</span>
-            <iframe src="https://rumble.com/embed/v6qeyvr/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>El banquete real</h3>
-              <p>La reina sorprende a todos con sus habilidades culinarias.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeyvr/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          
-          <!-- Capítulo 5 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 5</span>
-            <iframe src="https://rumble.com/embed/v6qf1ct/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>Confesiones inesperadas</h3>
-              <p>Los sentimientos comienzan a florecer en medio del caos.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1ct/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          
-          <!-- Capítulo 6 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 6</span>
-            <iframe src="https://rumble.com/embed/v6qf1o3/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>La conspiración</h3>
-              <p>Una amenaza se cierne sobre la reina y el rey.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          
-          <!-- Capítulo 7 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 7</span>
-            <iframe src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>Decisiones cruciales</h3>
-              <p>La reina debe elegir entre su seguridad y la verdad.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
 
-          <!-- Capítulo 8 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 8</span>
-            <iframe src="https://rumble.com/embed/v6qfy37/?pub=4lcv1n" allowfullscreen></iframe>
+          <!-- Pokémon: Detective Pikachu (2019) -->
+          <article class="video-item">
+            <span class="episode-badge">Película</span>
+            <iframe src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Detective Pikachu (2019)"></iframe>
             <div class="video-info">
-              <h3>Alianzas peligrosas</h3>
-              <p>La reina se acerca a alguien inesperado para obtener ayuda.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfy37/?pub=4lcv1n', '_blank')">Ver ahora</button>
+              <h3>Detective Pikachu (2019)</h3>
+              <p>Un joven une fuerzas con el detective Pikachu para desentrañar el misterio detrás de la desaparición de su padre.</p>
+              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
             </div>
-          </div>
-
-          <!-- Capítulo 9 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 9</span>
-            <iframe src="https://rumble.com/embed/v6qidz7/?pub=4lcv1n" allowfullscreen></iframe>
+          </article>
+          
+          <!-- Sonic: La película (2020) -->
+          <article class="video-item">
+            <span class="episode-badge">Película</span>
+            <iframe src="https://rumble.com/embed/v6qodlh/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="Sonic: La película (2020)"></iframe>
             <div class="video-info">
-              <h3>El juego del poder</h3>
-              <p>Las tensiones en la corte alcanzan su punto máximo. </p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qidz7/?pub=4lcv1n', '_blank')">Ver ahora</button>
+              <h3>Sonic: La película (2020)</h3>
+              <p>Sonic intenta atravesar las complejidades de la vida en la Tierra con su nuevo mejor amigo, un humano llamado Tom Wachowski.</p>
+              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qodlh/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
             </div>
-          </div>
-
-          <!-- Capítulo 10 -->
-          <div class="video-item">
-            <span class="episode-badge">Episodio 10</span>
-            <iframe src="https://rumble.com/embed/v6qieaf/?pub=4lcv1n" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>Revelaciones impactantes</h3>
-              <p>Un secreto del pasado cambia todo.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qieaf/?pub=4lcv1n', '_blank')">Ver ahora</button>
-            </div>
-          </div>
+          </article>
         </div>
-      </div>
-      
-      <!-- Subsección de Propuesta Laboral -->
-      <div id="propuesta-laboral-series" class="series-subsection hidden">
-        <div class="video-gallery">
-          <!-- Aquí puedes agregar los capítulos de Propuesta Laboral cuando los tengas -->
-          <!-- Ejemplo: -->
-          <!--
-          <div class="video-item">
-            <span class="episode-badge">Episodio 1</span>
-            <iframe src="URL_DEL_VIDEO" allowfullscreen></iframe>
-            <div class="video-info">
-              <h3>Título del episodio</h3>
-              <p>Descripción del episodio</p>
-              <button class="watch-btn" onclick="window.open('URL_DEL_VIDEO', '_blank')">Ver ahora</button>
-            </div>
-          </div>
-          -->
-        </div>
-      </div>
-    </div>
-    
-    <!-- Sección de Películas -->
-    <div id="movies-section" class="hidden">
-      <div class="video-gallery">
-        <div class="video-item">
-          <span class="episode-badge">Película</span>
-          <iframe src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen></iframe>
-          <div class="video-info">
-            <h3>Detective Pikachu</h3>
-            <p>Un joven une fuerzas con el detective Pikachu para desentrañar el misterio detrás de la desaparición de su padre.</p>
-            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank')">Ver ahora</button>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
     
     <footer>
-      <p>© Hola Amorcito, si lees esto te amooo muchooo<3</p>
+      <p>© RaveDramas 2025 - Creado con ❤️ para ti mi amor</p>
+      <p class="disclaimer">Todos los contenidos son enlaces externos a Rumble ok</p>
     </footer>
+
+    <a href="#" class="back-to-top" aria-label="Volver arriba">↑</a>
   </div>
 
   <script>
-    // Efecto de hover más suave
-    document.querySelectorAll('.video-item').forEach(item => {
-      item.addEventListener('mouseenter', function() {
-        this.style.transition = 'all 0.3s ease';
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.container');
+      
+      // Delegación de eventos para toda la página
+      container.addEventListener('click', (e) => {
+        const sectionBtn = e.target.closest('.section-btn');
+        const seriesBtn = e.target.closest('.series-btn');
+        const backToTop = e.target.closest('.back-to-top');
+        
+        if (sectionBtn) {
+          handleSectionChange(sectionBtn);
+        }
+        
+        if (seriesBtn) {
+          handleSeriesChange(seriesBtn);
+        }
+
+        if (backToTop) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
       });
-    });
-    
-    // Selector de sección principal
-    document.querySelectorAll('.section-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Quitar active de todos los botones principales
-        document.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
-        // Añadir active al botón clickeado
-        this.classList.add('active');
-        
-        // Ocultar todas las secciones principales
-        document.getElementById('series-section').classList.add('hidden');
-        document.getElementById('movies-section').classList.add('hidden');
-        
-        // Mostrar la sección correspondiente
-        const section = this.getAttribute('data-section');
-        document.getElementById(section + '-section').classList.remove('hidden');
+      
+      // Mostrar/ocultar botón "Volver arriba" al hacer scroll
+      window.addEventListener('scroll', () => {
+        const backToTop = document.querySelector('.back-to-top');
+        if (window.scrollY > 300) {
+          backToTop.style.display = 'flex';
+        } else {
+          backToTop.style.display = 'none';
+        }
       });
-    });
-    
-    // Selector de series
-    document.querySelectorAll('.series-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Quitar active de todos los botones de series
-        document.querySelectorAll('.series-btn').forEach(b => b.classList.remove('active'));
-        // Añadir active al botón clickeado
-        this.classList.add('active');
+
+      // Manejar cambio de sección principal
+      function handleSectionChange(btn) {
+        const currentActive = document.querySelector('.section-btn.active');
+        if (currentActive) currentActive.classList.remove('active');
+        btn.classList.add('active');
         
-        // Ocultar todas las subsecciones de series
-        document.querySelectorAll('.series-subsection').forEach(sub => sub.classList.add('hidden'));
+        const sectionId = btn.dataset.section + '-section';
+        document.querySelectorAll('main > section').forEach(section => {
+          section.classList.add('hidden');
+        });
+        document.getElementById(sectionId).classList.remove('hidden');
+      }
+      
+      // Manejar cambio de serie
+      function handleSeriesChange(btn) {
+        const currentActive = document.querySelector('.series-btn.active');
+        if (currentActive) currentActive.classList.remove('active');
+        btn.classList.add('active');
         
-        // Mostrar la subsección correspondiente
-        const series = this.getAttribute('data-series');
-        document.getElementById(series + '-series').classList.remove('hidden');
+        const seriesId = btn.dataset.series + '-series';
+        document.querySelectorAll('.series-subsection').forEach(subsection => {
+          subsection.classList.add('hidden');
+        });
+        document.getElementById(seriesId).classList.remove('hidden');
+      }
+
+      // Ocultar mensaje de carga cuando el iframe se carga
+      document.querySelectorAll('iframe').forEach(iframe => {
+        iframe.addEventListener('load', function() {
+          this.parentNode.querySelector('.video-item::after').style.display = 'none';
+        });
       });
     });
   </script>
