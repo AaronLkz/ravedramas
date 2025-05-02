@@ -87,4 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize lazy loading
   lazyLoadIframes();
-};
+});
