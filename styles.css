@@ -285,3 +285,20 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* Optimización móvil - agregar al final del CSS */
+@media (max-width: 768px) {
+  .video-item .iframe-container::after {
+    animation: shimmer-mobile 2s infinite; /* Animación más ligera */
+    background-size: 150% 100%; /* Menos desplazamiento */
+  }
+  
+  @keyframes shimmer-mobile {
+    0% { background-position: -150% 0; }
+    100% { background-position: 150% 0; }
+  }
+  
+  .video-gallery {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 20px;
+  }
+}
