@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Generador de Capítulos</title>
+    <title>Generador de Capítulos RaveDramas</title>
     <style>
         body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 20px; 
-            max-width: 800px;
+            font-family: 'Troubleside', 'Montserrat', sans-serif; 
+            margin: 0;
+            padding: 2rem;
+            background-color: #FFF8F0;
+            color: #5A4A42;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
         }
         h1 {
-            color: #5A4A42;
+            color: #8B4513;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
         }
         textarea { 
             width: 100%; 
@@ -22,31 +25,32 @@
             margin: 20px 0;
             padding: 15px;
             border-radius: 8px;
-            border: 1px solid #D4A59A;
+            border: 1px solid #E0D5C8;
             font-family: monospace;
             background-color: white;
+            resize: vertical;
         }
         button { 
             padding: 12px 25px; 
-            background: #D4A59A; 
+            background: #8B4513; 
             color: white; 
             border: none; 
             cursor: pointer;
             border-radius: 30px;
             font-size: 1rem;
-            font-weight: 500;
+            font-family: 'Troubleside', sans-serif;
             display: block;
-            margin: 0 auto;
+            margin: 15px auto;
             transition: all 0.3s ease;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
         }
         button:hover { 
-            background: #C88EA7;
+            background: #A0522D;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(200, 142, 167, 0.3);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
         }
         .copy-btn {
             background: #5A4A42;
-            margin-top: 10px;
         }
         .copy-btn:hover {
             background: #3a2e28;
@@ -57,6 +61,21 @@
             border-radius: 8px;
             margin-bottom: 20px;
             color: #5A4A42;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .info-box {
+            background-color: #F3E9DC;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #8B4513;
+        }
+        @font-face {
+            font-family: 'Troubleside';
+            src: url('https://cdn.jsdelivr.net/gh/chytanka/chytanka.github.io/src/assets/fonts/Troubleside.ttf') format('truetype');
+            font-display: swap;
         }
     </style>
 </head>
@@ -64,7 +83,17 @@
     <h1>Generador de Capítulos RaveDramas</h1>
     
     <div class="instructions">
-        <p><strong>Instrucciones:</strong> Haz clic en "Comenzar a Generar" e introduce los datos de cada capítulo. El generador creará el código HTML con la nueva estructura optimizada.</p>
+        <p><strong>Instrucciones:</strong> Haz clic en "Comenzar a Generar" e introduce los datos de cada capítulo. El generador creará el código HTML con la estructura optimizada para el nuevo diseño.</p>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>Novedades:</strong></p>
+        <ul>
+            <li>Genera código compatible con el nuevo diseño manga</li>
+            <li>Botones con texto "Ver en Rave"</li>
+            <li>Estructura optimizada para tarjetas 3D</li>
+            <li>Sinopsis eliminada según lo solicitado</li>
+        </ul>
     </div>
     
     <button id="iniciar">Comenzar a Generar</button>
@@ -80,34 +109,35 @@
             iniciarBtn.addEventListener('click', function() {
                 let codigoFinal = '';
                 let continuar = true;
+                let colorIndex = 0;
+                const colores = ['#8B4513', '#A0522D', '#CD853F', '#D2B48C', '#BC8F8F'];
                 
                 while(continuar) {
                     const numero = prompt("Introduce el número del episodio (ej: 1):");
                     if (numero === null) break;
                     
-                    const badge = prompt("Introduce el texto para el badge (ej: 'Episodio 1' o 'Película'):", `Episodio ${numero}`);
-                    if (badge === null) break;
+                    const tipo = prompt("¿Es un episodio o película? (Escribe 'episodio' o 'pelicula'):", "episodio").toLowerCase();
+                    const badge = tipo === 'pelicula' ? 'Película' : `Episodio ${numero}`;
                     
-                    const titulo = prompt("Introduce el título del episodio:");
+                    const titulo = prompt("Introduce el título:");
                     if (titulo === null) break;
-                    
-                    const sipnosis = prompt("Introduce la sipnosis:");
-                    if (sipnosis === null) break;
                     
                     const enlaceEmbed = prompt("Introduce el enlace embed (iframe) de Rumble:");
                     if (enlaceEmbed === null) break;
                     
-                    const enlaceNormal = enlaceEmbed; // Usamos el mismo enlace para iframe y botón
+                    // Seleccionar color rotativo
+                    const color = colores[colorIndex % colores.length];
+                    colorIndex++;
                     
                     // Generar el código HTML con la nueva estructura
-                    const codigo = `<!-- ${badge} -->
-<article class="video-item">
+                    const codigo = `<article ${tipo === 'episodio' ? 'class="mr-queen-episode"' : ''} style="--avarage-color: ${color}">
     <span class="episode-badge">${badge}</span>
-    <iframe src="${enlaceEmbed}" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" loading="lazy" title="${titulo}"></iframe>
+    <div class="video-container">
+        <iframe src="${enlaceEmbed}" allowfullscreen></iframe>
+    </div>
     <div class="video-info">
         <h3>${titulo}</h3>
-        <p>${sipnosis}</p>
-        <button class="watch-btn" onclick="window.open('${enlaceNormal}', '_blank', 'noopener')">Ver ahora</button>
+        <button class="watch-btn" onclick="window.open('${enlaceEmbed}', '_blank')">Ver en Rave</button>
     </div>
 </article>\n\n`;
                     
@@ -125,7 +155,16 @@
             copiarBtn.addEventListener('click', function() {
                 resultadoTextarea.select();
                 document.execCommand('copy');
-                alert("¡Código copiado al portapapeles!");
+                
+                // Efecto visual al copiar
+                const originalText = copiarBtn.textContent;
+                copiarBtn.textContent = "¡Copiado!";
+                copiarBtn.style.backgroundColor = "#388E3C";
+                
+                setTimeout(() => {
+                    copiarBtn.textContent = originalText;
+                    copiarBtn.style.backgroundColor = "";
+                }, 2000);
             });
         });
     </script>
