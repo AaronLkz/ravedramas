@@ -72,6 +72,47 @@
             margin: 20px 0;
             border-left: 4px solid #8B4513;
         }
+        .form-container {
+            background-color: #F3E9DC;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #D4A59A;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form-actions button {
+            margin: 0;
+            flex: 1;
+        }
+        .form-actions button:first-child {
+            margin-right: 10px;
+        }
+        .preview {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #E0D5C8;
+        }
         @font-face {
             font-family: 'Troubleside';
             src: url('https://cdn.jsdelivr.net/gh/chytanka/chytanka.github.io/src/assets/fonts/Troubleside.ttf') format('truetype');
@@ -89,15 +130,51 @@
     <div class="info-box">
         <p><strong>Novedades:</strong></p>
         <ul>
-            <li>Genera código compatible con el nuevo diseño manga</li>
+            <li>Interfaz completa en la página (sin popups molestos)</li>
+            <li>Previsualización del código generado</li>
+            <li>No se pierde el progreso al cambiar de pestaña</li>
             <li>Botones con texto "Ver en Rave"</li>
-            <li>Estructura optimizada para tarjetas 3D</li>
-            <li>Sinopsis eliminada según lo solicitado</li>
         </ul>
     </div>
     
     <button id="iniciar">Comenzar a Generar</button>
-    <textarea id="resultado" placeholder="Aquí aparecerá el código generado..." readonly></textarea>
+    
+    <div id="formulario" class="form-container">
+        <div class="form-group">
+            <label for="tipo">Tipo:</label>
+            <select id="tipo">
+                <option value="episodio">Episodio</option>
+                <option value="pelicula">Película</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="numero">Número del episodio (ignorar si es película):</label>
+            <input type="text" id="numero" placeholder="Ej: 1">
+        </div>
+        
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" placeholder="Ej: El comienzo del viaje">
+        </div>
+        
+        <div class="form-group">
+            <label for="enlace">Enlace embed de Rumble:</label>
+            <input type="text" id="enlace" placeholder="Ej: https://rumble.com/embed/v6qef0l/?pub=4lcv1n">
+        </div>
+        
+        <div class="form-actions">
+            <button id="agregar">Agregar Capítulo</button>
+            <button id="finalizar" class="copy-btn">Finalizar</button>
+        </div>
+        
+        <div class="preview">
+            <h3>Vista previa del código:</h3>
+            <pre id="preview-code"><small>Aquí aparecerá el código generado...</small></pre>
+        </div>
+    </div>
+    
+    <textarea id="resultado" placeholder="Aquí aparecerá el código completo generado..." readonly></textarea>
     <button id="copiar" class="copy-btn">Copiar al Portapapeles</button>
 
     <script>
@@ -105,51 +182,74 @@
             const iniciarBtn = document.getElementById('iniciar');
             const copiarBtn = document.getElementById('copiar');
             const resultadoTextarea = document.getElementById('resultado');
+            const formulario = document.getElementById('formulario');
+            const agregarBtn = document.getElementById('agregar');
+            const finalizarBtn = document.getElementById('finalizar');
+            const previewCode = document.getElementById('preview-code');
+            
+            let codigoFinal = '';
+            let colorIndex = 0;
+            const colores = ['#8B4513', '#A0522D', '#CD853F', '#D2B48C', '#BC8F8F'];
             
             iniciarBtn.addEventListener('click', function() {
-                let codigoFinal = '';
-                let continuar = true;
-                let colorIndex = 0;
-                const colores = ['#8B4513', '#A0522D', '#CD853F', '#D2B48C', '#BC8F8F'];
+                iniciarBtn.style.display = 'none';
+                formulario.style.display = 'block';
+                resultadoTextarea.value = '';
+                codigoFinal = '';
+            });
+            
+            agregarBtn.addEventListener('click', function() {
+                const tipo = document.getElementById('tipo').value;
+                const numero = document.getElementById('numero').value;
+                const titulo = document.getElementById('titulo').value;
+                const enlace = document.getElementById('enlace').value;
                 
-                while(continuar) {
-                    const numero = prompt("Introduce el número del episodio (ej: 1):");
-                    if (numero === null) break;
-                    
-                    const tipo = prompt("¿Es un episodio o película? (Escribe 'episodio' o 'pelicula'):", "episodio").toLowerCase();
-                    const badge = tipo === 'pelicula' ? 'Película' : `Episodio ${numero}`;
-                    
-                    const titulo = prompt("Introduce el título:");
-                    if (titulo === null) break;
-                    
-                    const enlaceEmbed = prompt("Introduce el enlace embed (iframe) de Rumble:");
-                    if (enlaceEmbed === null) break;
-                    
-                    // Seleccionar color rotativo
-                    const color = colores[colorIndex % colores.length];
-                    colorIndex++;
-                    
-                    // Generar el código HTML con la nueva estructura
-                    const codigo = `<article ${tipo === 'episodio' ? 'class="mr-queen-episode"' : ''} style="--avarage-color: ${color}">
+                if (!titulo || !enlace) {
+                    alert('Por favor completa al menos el título y el enlace');
+                    return;
+                }
+                
+                const badge = tipo === 'pelicula' ? 'Película' : `Episodio ${numero || 'X'}`;
+                const color = colores[colorIndex % colores.length];
+                colorIndex++;
+                
+                // Generar el código HTML
+                const codigo = `<article ${tipo === 'episodio' ? 'class="mr-queen-episode"' : ''} style="--avarage-color: ${color}">
     <span class="episode-badge">${badge}</span>
     <div class="video-container">
-        <iframe src="${enlaceEmbed}" allowfullscreen></iframe>
+        <iframe src="${enlace}" allowfullscreen></iframe>
     </div>
     <div class="video-info">
         <h3>${titulo}</h3>
-        <button class="watch-btn" onclick="window.open('${enlaceEmbed}', '_blank')">Ver en Rave</button>
+        <button class="watch-btn" onclick="window.open('${enlace}', '_blank')">Ver en Rave</button>
     </div>
 </article>\n\n`;
-                    
-                    codigoFinal += codigo;
-                    
-                    continuar = confirm("¿Deseas añadir otro capítulo?");
-                    if (!continuar) {
-                        resultadoTextarea.value = codigoFinal;
-                        resultadoTextarea.focus();
-                        resultadoTextarea.select();
-                    }
+                
+                // Actualizar vista previa
+                previewCode.textContent = codigo;
+                
+                // Agregar al código final
+                codigoFinal += codigo;
+                resultadoTextarea.value = codigoFinal;
+                
+                // Limpiar campos (excepto tipo)
+                document.getElementById('numero').value = '';
+                document.getElementById('titulo').value = '';
+                document.getElementById('enlace').value = '';
+                
+                // Enfocar siguiente campo
+                if (tipo === 'episodio') {
+                    document.getElementById('numero').focus();
+                } else {
+                    document.getElementById('titulo').focus();
                 }
+            });
+            
+            finalizarBtn.addEventListener('click', function() {
+                formulario.style.display = 'none';
+                iniciarBtn.style.display = 'block';
+                resultadoTextarea.focus();
+                resultadoTextarea.select();
             });
             
             copiarBtn.addEventListener('click', function() {
@@ -165,6 +265,11 @@
                     copiarBtn.textContent = originalText;
                     copiarBtn.style.backgroundColor = "";
                 }, 2000);
+            });
+            
+            // Manejar cambio de tipo
+            document.getElementById('tipo').addEventListener('change', function() {
+                document.getElementById('numero').disabled = this.value === 'pelicula';
             });
         });
     </script>
