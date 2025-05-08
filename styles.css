@@ -11,15 +11,12 @@
     --ratio: 16 / 9;
     --t: 0.3s;
     --min-card-width: 300px;
-    
-    /* Paleta manga suave */
-    --accent: #8B4513; /* Café manga */
-    --surface: #FFF8F0; /* Blanco hueso */
-    --text: #5A4A42; /* Texto café suave */
-    --border: #E0D5C8; /* Borde claro */
-    --shadow: rgba(0, 0, 0, 0.08); /* Sombra muy suave */
-    --badge-text: #FFF8F0; /* Texto para badges */
-    
+    --accent: #8B4513;
+    --surface: #FFF8F0;
+    --text: #5A4A42;
+    --border: #E0D5C8;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --badge-text: #FFF8F0;
     --radius: 0.5rem;
     --border-size: 0.125rem;
     
@@ -32,59 +29,18 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --accent: #D2B48C; /* Café claro para modo oscuro */
-      --surface: #1A1A1A; /* Fondo oscuro */
-      --text: #F0E6D2; /* Texto color pergamino */
+      --accent: #D2B48C;
+      --surface: #1A1A1A;
+      --text: #F0E6D2;
       --border: #3A3A3A;
       --shadow: rgba(0, 0, 0, 0.2);
       --badge-text: #1A1A1A;
     }
   }
-
-  @property --item-scale {
-    syntax: "<number>";
-    inherits: true;
-    initial-value: 1;
-  }
-
-  @property --item-angle {
-    syntax: "<angle>";
-    inherits: true;
-    initial-value: 0deg;
-  }
 }
 
-@layer animations {
-  @keyframes shrink-top {
-    0%, 20% {
-      --item-scale: 0.95;
-      --item-angle: -5deg;
-      transform-origin: top;
-      opacity: 0.8;
-    }
-    100% {
-      --item-scale: 1;
-      --item-angle: 0deg;
-      opacity: 1;
-    }
-  }
-
-  @keyframes shrink-bottom {
-    0%, 20% {
-      --item-scale: 0.95;
-      --item-angle: 5deg;
-      transform-origin: bottom;
-      opacity: 0.8;
-    }
-    100% {
-      --item-scale: 1;
-      --item-angle: 0deg;
-      opacity: 1;
-    }
-  }
-}
-
-@layer base {
+@layer components {
+  /* Estilos generales */
   body, figure {
     margin: 0;
     padding: 0;
@@ -99,9 +55,7 @@
   *, *::before, *::after {
     box-sizing: border-box;
   }
-}
 
-@layer components {
   h1 {
     color: var(--accent);
     font-family: 'Troubleside';
@@ -111,6 +65,12 @@
     font-weight: normal;
     letter-spacing: 1px;
     text-shadow: 1px 1px 2px var(--shadow);
+  }
+
+  h2 {
+    color: var(--accent);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .subtitle {
@@ -129,59 +89,66 @@
     min-height: 100vh;
   }
 
-  section {
-    margin-bottom: 3rem;
-    position: relative;
-    perspective: 4000px;
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text);
+    opacity: 0.7;
+    font-family: 'Troubleside';
+    margin-top: 2rem;
   }
 
+  /* Estructura principal */
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .content-card {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    background-color: var(--surface);
+    box-shadow: 3px 3px 8px var(--shadow);
+    transition: transform 0.3s ease;
+  }
+
+  .content-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .content-link {
+    display: block;
+    padding: 0.8rem;
+    background-color: var(--accent);
+    color: var(--badge-text);
+    text-align: center;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+  }
+
+  .content-link:hover {
+    background-color: var(--text);
+    color: var(--surface);
+    transform: scale(1.02);
+  }
+
+  /* Estilos para páginas de contenido */
   .series-content, .movies-grid {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(var(--min-card-width), 1fr));
-  }
-
-  section header {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .nav-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .nav-btn {
-    background: none;
-    border: none;
-    color: var(--text);
-    font-family: 'Troubleside';
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    position: relative;
-    opacity: 0.7;
-    transition: all var(--t) ease-out;
-  }
-
-  .nav-btn.active {
-    opacity: 1;
-    color: var(--accent);
-  }
-
-  .nav-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 2px;
-    background: var(--accent);
-    transition: all var(--t) ease-out;
+    padding: 1rem;
   }
 
   article {
@@ -191,18 +158,9 @@
     border-radius: var(--radius);
     background-color: var(--surface);
     box-shadow: 1px 1px 3px var(--shadow);
-    opacity: min(var(--item-scale), 0.95);
-    transform: 
-      rotate(var(--deg)) 
-      translateY(var(--y)) 
-      scale(var(--item-scale))
-      rotateX(var(--item-angle));
-    transition: 
-      transform var(--t) cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      opacity var(--t) ease-out,
-      box-shadow var(--t) ease-out;
-    will-change: transform;
-    transform-style: preserve-3d;
+    opacity: 0.95;
+    transform: rotate(var(--deg)) translateY(var(--y));
+    transition: transform var(--t) cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -214,16 +172,6 @@
     --y: -0.5rem;
     box-shadow: 3px 3px 8px var(--shadow);
     opacity: 1;
-  }
-
-  @supports (animation-timeline: view()) {
-    article {
-      animation: 
-        shrink-top 0.6s both ease-out,
-        shrink-bottom 0.6s both ease-out reverse;
-      animation-timeline: view(block);
-      animation-range: entry 0% cover 20%, exit 0% cover 20%;
-    }
   }
 
   .video-container {
@@ -294,13 +242,18 @@
     box-shadow: 2px 2px 4px var(--shadow);
   }
 
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text);
-    opacity: 0.7;
+  .back-btn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    text-decoration: none;
     font-family: 'Troubleside';
-    margin-top: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .back-btn:hover {
+    text-decoration: underline;
+    transform: translateX(-3px);
   }
 
   .back-to-top {
@@ -334,35 +287,5 @@
 
   .hidden {
     display: none;
-  }
-}
-
-@layer utilities {
-  article:nth-child(2n) {
-    --deg: -0.8deg;
-  }
-
-  article:nth-child(2n + 1) {
-    --deg: -0.6deg;
-  }
-
-  article:nth-child(3n) {
-    --deg: 0.6deg;
-  }
-
-  article:nth-child(4n + 2) {
-    --deg: -0.75deg;
-  }
-
-  article:nth-child(5n) {
-    --deg: 0.25deg;
-  }
-
-  article:nth-child(6n + 3) {
-    --deg: -0.3deg;
-  }
-
-  article:nth-child(7n) {
-    --deg: 0.9deg;
   }
 }
