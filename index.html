@@ -4,246 +4,236 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RaveDramas - Aaron</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://rumble.com">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap">
-  </noscript>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <main>
     <header>
       <h1>RaveDramas</h1>
       <p class="subtitle">Una historia de amor entre series y películas</p>
     </header>
-    
-    <nav class="section-selector" aria-label="Secciones principales">
-      <button class="section-btn active" data-section="series" aria-current="page">Series</button>
-      <button class="section-btn" data-section="movies">Películas</button>
-    </nav>
-    
-    <main>
-      <!-- Sección de Series -->
-      <section id="series-section">
-        <div class="series-selector">
-          <button class="series-btn active" data-series="mr-queen" aria-current="page">Mr. Queen</button>
-          <button class="series-btn" data-series="propuesta-laboral">Propuesta Laboral</button>
-        </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn active" data-section="series">Series</button>
+      <button class="nav-btn" data-section="movies">Películas</button>
+    </div>
+
+    <!-- Sección de Series -->
+    <section id="series-section">
+      <header>
+        <h1>Series</h1>
+      </header>
+
+      <div class="nav-buttons">
+        <button class="nav-btn active" data-series="mr-queen">Mr. Queen</button>
+        <button class="nav-btn" data-series="propuesta-laboral">Propuesta Laboral</button>
+      </div>
+
+      <!-- Mr. Queen -->
+      <div class="series-content" id="mr-queen-series">
         
-        <!-- Subsección de Mr. Queen -->
-        <article id="mr-queen-series" class="series-subsection">
-          <div class="video-gallery">
-            
-            <!-- Capítulo 1 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 1</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qef0l/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 1 - El comienzo del viaje"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>El comienzo del viaje</h3>
-                <p>Un chef moderno se encuentra en el cuerpo de una reina Joseon.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qef0l/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-            
-            <!-- Capítulo 2 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 2</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qeupf/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 2 - Ajustándose a la vida real"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>Ajustándose a la vida real</h3>
-                <p>La reina intenta adaptarse a su nueva vida en la corte.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeupf/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-            
-            <!-- Capítulo 3 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 3</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qew81/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 3 - Secretos de la corte"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>Secretos de la corte</h3>
-                <p>Los primeros conflictos políticos comienzan a surgir.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qew81/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-            
-            <!-- Capítulo 4 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 4</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qeyvr/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 4 - El banquete real"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>El banquete real</h3>
-                <p>La reina sorprende a todos con sus habilidades culinarias.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeyvr/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-            
-            <!-- Capítulo 5 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 5</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qf1ct/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 5 - Confesiones inesperadas"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>Confesiones inesperadas</h3>
-                <p>Los sentimientos comienzan a florecer en medio del caos.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1ct/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-            
-            <!-- Capítulo 6 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 6</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qf1o3/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 6 - La conspiración"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>La conspiración</h3>
-                <p>Una amenaza se cierne sobre la reina y el rey.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-            
-            <!-- Capítulo 7 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 7</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 7 - Decisiones cruciales"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>Decisiones cruciales</h3>
-                <p>La reina debe elegir entre su seguridad y la verdad.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-
-            <!-- Capítulo 8 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 8</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qfy37/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 8 - Alianzas peligrosas"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>Alianzas peligrosas</h3>
-                <p>La reina se acerca a alguien inesperado para obtener ayuda.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfy37/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-
-            <!-- Capítulo 9 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 9</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qidz7/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 9 - El juego del poder"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>El juego del poder</h3>
-                <p>Las tensiones en la corte alcanzan su punto máximo.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qidz7/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-
-            <!-- Capítulo 10 -->
-            <article class="video-item">
-              <span class="episode-badge">Episodio 10</span>
-              <div class="iframe-container">
-                <iframe data-src="https://rumble.com/embed/v6qieaf/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Mr. Queen Episodio 10 - Revelaciones impactantes"></iframe>
-              </div>
-              <div class="video-info">
-                <h3>Revelaciones impactantes</h3>
-                <p>Un secreto del pasado cambia todo.</p>
-                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qieaf/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-              </div>
-            </article>
-          </div>
+      <!-- EP1 -->
+        <article class="mr-queen-episode" style="--avarage-color: #8B4513">
+            <span class="episode-badge">Episodio 1</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qef0l/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Este no es mi cuerpo</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qef0l/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
         </article>
 
-        <!-- Subsección de Propuesta Laboral -->
-        <article id="propuesta-laboral-series" class="series-subsection hidden">
-          <div class="video-gallery">
-            <!-- Contenido de Propuesta Laboral -->
+      <!-- EP2 -->
+        <article class="mr-queen-episode" style="--avarage-color: #8B4513">
+            <span class="episode-badge">Episodio 2</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qeupf/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Conociendo a la Reina</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeupf/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+
+      <!-- EP3 -->
+        <article class="mr-queen-episode" style="--avarage-color: #A0522D">
+            <span class="episode-badge">Episodio 3</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qew81/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>El accidente</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qew81/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP4 -->
+        <article class="mr-queen-episode" style="--avarage-color: #CD853F">
+            <span class="episode-badge">Episodio 4</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qeyvr/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>El beso</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qeyvr/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP5 -->
+        <article class="mr-queen-episode" style="--avarage-color: #8B4513">
+            <span class="episode-badge">Episodio 5</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qf1ct/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>¿Todo en su lugar?</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1ct/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP6 -->
+        <article class="mr-queen-episode" style="--avarage-color: #A0522D">
+            <span class="episode-badge">Episodio 6</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qf1o3/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>El compromiso</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qf1o3/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP7 -->
+        <article class="mr-queen-episode" style="--avarage-color: #CD853F">
+            <span class="episode-badge">Episodio 7</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qfmpf/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>La Reina está en coma</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfmpf/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP8 -->
+        <article class="mr-queen-episode" style="--avarage-color: #D2B48C">
+            <span class="episode-badge">Episodio 8</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qfy37/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Relación peligrosa</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qfy37/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP9 -->
+        <article class="mr-queen-episode" style="--avarage-color: #BC8F8F">
+            <span class="episode-badge">Episodio 9</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qidz7/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Luz y oscuridad</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qidz7/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      <!-- EP10 -->
+        <article class="mr-queen-episode" style="--avarage-color: #8B4513">
+            <span class="episode-badge">Episodio 10</span>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qieaf/?pub=4lcv1n" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>Viviendo las pesadillas</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qieaf/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            </div>
+        </article>
+        
+      </div>
+
+      <!-- Propuesta Laboral -->
+      <div id="propuesta-laboral-series" class="series-content hidden">
+        <article style="--avarage-color: #D2B48C">
+          <span class="episode-badge">Próximamente</span>
+          <div class="video-container">
+            <!-- Espacio para video -->
+          </div>
+          <div class="video-info">
+            <h3>Propuesta Laboral</h3>
+            <button class="watch-btn">Ver en Rave</button>
           </div>
         </article>
-      </section>
-      
-      <!-- Sección de Películas -->
-      <section id="movies-section" class="hidden">
-        <div class="video-gallery">
+      </div>
+    </section>
 
-          <!-- Pokémon: Detective Pikachu (2019) -->
-          <article class="video-item">
+    <!-- Sección de Películas -->
+    <section id="movies-section" class="hidden">
+      <header>
+        <h1>Películas</h1>
+      </header>
+      <div class="movies-grid">
+
+      <!-- Sonic 1 -->
+        <article  style="--avarage-color: #8B4513">
             <span class="episode-badge">Película</span>
-            <div class="iframe-container">
-              <iframe data-src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Detective Pikachu"></iframe>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qodlh/?pub=4lcv1n" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-              <h3>Pokémon: Detective Pikachu</h3>
-              <p>Un joven une fuerzas con el detective Pikachu para desentrañar el misterio detrás de la desaparición de su padre.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+                <h3>Sonic 1: La Película</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qodlh/?pub=4lcv1n', '_blank')">Ver en Rave</button>
             </div>
-          </article>
-          
-          <!-- Sonic: La película (2020) -->
-          <article class="video-item">
+        </article>
+        
+      <!-- Sonic 2 -->
+        <article  style="--avarage-color: #8B4513">
             <span class="episode-badge">Película</span>
-            <div class="iframe-container">
-              <iframe data-src="https://rumble.com/embed/v6qodlh/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Sonic: La película"></iframe>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qp0w1/?pub=4lcv1n" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-              <h3>Sonic: La película</h3>
-              <p>Sonic intenta atravesar las complejidades de la vida en la Tierra con su nuevo mejor amigo, un humano llamado Tom Wachowski.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qodlh/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+                <h3>Sonic 2: La Película</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qp0w1/?pub=4lcv1n', '_blank')">Ver en Rave</button>
             </div>
-          </article>
-
-          <!-- Sonic 2: La película -->
-          <article class="video-item">
+        </article>
+        
+      <!-- Sonic 3 -->
+        <article  style="--avarage-color: #A0522D">
             <span class="episode-badge">Película</span>
-            <div class="iframe-container">
-              <iframe data-src="https://rumble.com/embed/v6qp0w1/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Sonic: La película"></iframe>
+            <div class="video-container">
+                <iframe src="https://rumble.com/embed/v6qwrob/?pub=4lcv1n" allowfullscreen></iframe>
             </div>
             <div class="video-info">
-              <h3>Sonic 2: La película</h3>
-              <p>Sonic y Tails emprenden un viaje alrededor del mundo en busca de una esmeralda que tiene del poder de destruir civilizaciones.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qp0w1/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
+                <h3>Sonic 3: La Película</h3>
+                <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qwrob/?pub=4lcv1n', '_blank')">Ver en Rave</button>
             </div>
-          </article>
+        </article>
 
-          <!-- Sonic 3: La película -->
-          <article class="video-item">
-            <span class="episode-badge">Película</span>
-            <div class="iframe-container">
-              <iframe data-src="https://rumble.com/embed/v6qwrob/?pub=4lcv1n" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups" class="lazy-iframe" title="Sonic: La película"></iframe>
-            </div>
-            <div class="video-info">
-              <h3>Sonic 3: La película</h3>
-              <p>Sonic, Knuckles y Tails se enfrentan a un nuevo enemigo: Shadow, un erizo que llegó del espacio y fue hecho prisionero por el Ejército.</p>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qwrob/?pub=4lcv1n', '_blank', 'noopener')">Ver ahora</button>
-            </div>
-          </article>
+      <!-- Pikachu -->
+        <article style="--avarage-color: #CD853F">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Pokémon: Detective Pikachu</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        
+      </div>
+    </section>
 
-        </div>
-      </section>
-    </main>
-    
     <footer>
       <p>© RaveDramas - Creado con ❤️ para ti mi amor</p>
     </footer>
 
     <a href="#" class="back-to-top" aria-label="Volver arriba">↑</a>
-  </div>
+  </main>
 
-  <script src="main.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
