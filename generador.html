@@ -65,13 +65,6 @@
             max-width: 800px;
             margin: 0 auto 30px;
         }
-        .info-box {
-            background-color: #F3E9DC;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #8B4513;
-        }
         .form-container {
             background-color: #F3E9DC;
             padding: 20px;
@@ -106,13 +99,6 @@
         .form-actions button:first-child {
             margin-right: 10px;
         }
-        .preview {
-            background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border: 1px solid #E0D5C8;
-        }
         @font-face {
             font-family: 'Troubleside';
             src: url('https://cdn.jsdelivr.net/gh/chytanka/chytanka.github.io/src/assets/fonts/Troubleside.ttf') format('truetype');
@@ -124,17 +110,7 @@
     <h1>Generador de Capítulos RaveDramas</h1>
     
     <div class="instructions">
-        <p><strong>Instrucciones:</strong> Haz clic en "Comenzar a Generar" e introduce los datos de cada capítulo. El generador creará el código HTML con la estructura optimizada para el nuevo diseño.</p>
-    </div>
-    
-    <div class="info-box">
-        <p><strong>Novedades:</strong></p>
-        <ul>
-            <li>Interfaz completa en la página (sin popups molestos)</li>
-            <li>Previsualización del código generado</li>
-            <li>No se pierde el progreso al cambiar de pestaña</li>
-            <li>Botones con texto "Ver en Rave"</li>
-        </ul>
+        <p><strong>Instrucciones:</strong> Haz clic en "Comenzar a Generar" e introduce los datos de cada capítulo.</p>
     </div>
     
     <button id="iniciar">Comenzar a Generar</button>
@@ -146,6 +122,11 @@
                 <option value="episodio">Episodio</option>
                 <option value="pelicula">Película</option>
             </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="serie">Nombre de la serie/película:</label>
+            <input type="text" id="serie" placeholder="Ej: Mr. Queen o Sonic 2">
         </div>
         
         <div class="form-group">
@@ -167,11 +148,6 @@
             <button id="agregar">Agregar Capítulo</button>
             <button id="finalizar" class="copy-btn">Finalizar</button>
         </div>
-        
-        <div class="preview">
-            <h3>Vista previa del código:</h3>
-            <pre id="preview-code"><small>Aquí aparecerá el código generado...</small></pre>
-        </div>
     </div>
     
     <textarea id="resultado" placeholder="Aquí aparecerá el código completo generado..." readonly></textarea>
@@ -185,7 +161,6 @@
             const formulario = document.getElementById('formulario');
             const agregarBtn = document.getElementById('agregar');
             const finalizarBtn = document.getElementById('finalizar');
-            const previewCode = document.getElementById('preview-code');
             
             let codigoFinal = '';
             let colorIndex = 0;
@@ -196,16 +171,18 @@
                 formulario.style.display = 'block';
                 resultadoTextarea.value = '';
                 codigoFinal = '';
+                document.getElementById('serie').focus();
             });
             
             agregarBtn.addEventListener('click', function() {
                 const tipo = document.getElementById('tipo').value;
+                const serie = document.getElementById('serie').value;
                 const numero = document.getElementById('numero').value;
                 const titulo = document.getElementById('titulo').value;
                 const enlace = document.getElementById('enlace').value;
                 
-                if (!titulo || !enlace) {
-                    alert('Por favor completa al menos el título y el enlace');
+                if (!serie || !titulo || !enlace) {
+                    alert('Por favor completa los campos requeridos');
                     return;
                 }
                 
@@ -214,7 +191,8 @@
                 colorIndex++;
                 
                 // Generar el código HTML
-                const codigo = `<article ${tipo === 'episodio' ? 'class="mr-queen-episode"' : ''} style="--avarage-color: ${color}">
+                const codigo = `<!-- ${serie} ${tipo === 'pelicula' ? '' : '- ' + badge} -->
+<article ${tipo === 'episodio' ? 'class="mr-queen-episode"' : ''} style="--avarage-color: ${color}">
     <span class="episode-badge">${badge}</span>
     <div class="video-container">
         <iframe src="${enlace}" allowfullscreen></iframe>
@@ -225,14 +203,11 @@
     </div>
 </article>\n\n`;
                 
-                // Actualizar vista previa
-                previewCode.textContent = codigo;
-                
                 // Agregar al código final
                 codigoFinal += codigo;
                 resultadoTextarea.value = codigoFinal;
                 
-                // Limpiar campos (excepto tipo)
+                // Limpiar campos (excepto tipo y serie)
                 document.getElementById('numero').value = '';
                 document.getElementById('titulo').value = '';
                 document.getElementById('enlace').value = '';
