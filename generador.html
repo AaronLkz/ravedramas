@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de Capítulos RaveDramas</title>
+    <style>
+        body { 
+            font-family: 'Troubleside', 'Montserrat', sans-serif; 
+            margin: 0;
+            padding: 2rem;
+            background-color: #FFF8F0;
+            color: #5A4A42;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+        }
+        textarea { 
+            width: 100%; 
+            height: 300px; 
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #E0D5C8;
+            font-family: monospace;
+            background-color: white;
+            resize: vertical;
+        }
+        button { 
+            padding: 12px 25px; 
+            background: #8B4513; 
+            color: white; 
+            border: none; 
+            cursor: pointer;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Troubleside', sans-serif;
+            display: block;
+            margin: 15px auto;
+            transition: all 0.3s ease;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        button:hover { 
+            background: #A0522D;
+            transform: translateY(-2px);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        .copy-btn {
+            background: #5A4A42;
+        }
+        .copy-btn:hover {
+            background: #3a2e28;
+        }
+        .instructions {
+            background-color: #F3E9DC;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #5A4A42;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .form-container {
+            background-color: #F3E9DC;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #D4A59A;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form-actions button {
+            margin: 0;
+            flex: 1;
+        }
+        .form-actions button:first-child {
+            margin-right: 10px;
+        }
+        @font-face {
+            font-family: 'Troubleside';
+            src: url('https://cdn.jsdelivr.net/gh/chytanka/chytanka.github.io/src/assets/fonts/Troubleside.ttf') format('truetype');
+            font-display: swap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de Capítulos RaveDramas</h1>
+    
+    <div class="instructions">
+        <p><strong>Instrucciones:</strong> Haz clic en "Comenzar a Generar" e introduce los datos de cada capítulo.</p>
+    </div>
+    
+    <button id="iniciar">Comenzar a Generar</button>
+    
+    <div id="formulario" class="form-container">
+        <div class="form-group">
+            <label for="tipo">Tipo:</label>
+            <select id="tipo">
+                <option value="episodio">Episodio</option>
+                <option value="pelicula">Película</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="serie">Nombre de la serie/película:</label>
+            <input type="text" id="serie" placeholder="Ej: Mr. Queen o Sonic 2">
+        </div>
+        
+        <div class="form-group">
+            <label for="numero">Número del episodio de la serie:</label>
+            <input type="text" id="numero" placeholder="Ej: 1">
+        </div>
+        
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" placeholder="Ej: El comienzo del viaje">
+        </div>
+        
+        <div class="form-group">
+            <label for="enlace">Enlace embed de Rumble:</label>
+            <input type="text" id="enlace" placeholder="Ej: https://rumble.com/embed/v6qef0l/?pub=4lcv1n">
+        </div>
+        
+        <div class="form-actions">
+            <button id="agregar">Agregar Capítulo</button>
+            <button id="finalizar" class="copy-btn">Finalizar</button>
+        </div>
+    </div>
+    
+    <textarea id="resultado" placeholder="Aquí aparecerá el código completo generado..." readonly></textarea>
+    <button id="copiar" class="copy-btn">Copiar al Portapapeles</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iniciarBtn = document.getElementById('iniciar');
+            const copiarBtn = document.getElementById('copiar');
+            const resultadoTextarea = document.getElementById('resultado');
+            const formulario = document.getElementById('formulario');
+            const agregarBtn = document.getElementById('agregar');
+            const finalizarBtn = document.getElementById('finalizar');
+            
+            let codigoFinal = '';
+            let colorIndex = 0;
+            const colores = ['#8B4513', '#A0522D', '#CD853F', '#D2B48C', '#BC8F8F'];
+            
+            iniciarBtn.addEventListener('click', function() {
+                iniciarBtn.style.display = 'none';
+                formulario.style.display = 'block';
+                resultadoTextarea.value = '';
+                codigoFinal = '';
+                document.getElementById('serie').focus();
+            });
+            
+            agregarBtn.addEventListener('click', function() {
+                const tipo = document.getElementById('tipo').value;
+                const serie = document.getElementById('serie').value;
+                const numero = document.getElementById('numero').value;
+                const titulo = document.getElementById('titulo').value;
+                const enlace = document.getElementById('enlace').value;
+                
+                if (!serie || !titulo || !enlace) {
+                    alert('Por favor completa los campos requeridos');
+                    return;
+                }
+                
+                const badge = tipo === 'pelicula' ? 'Película' : `Episodio ${numero || 'X'}`;
+                const color = colores[colorIndex % colores.length];
+                colorIndex++;
+                
+                // Generar el código HTML con indentación correcta (2 espacios base + 2 espacios adicionales)
+                const codigo = `      <!-- ${serie} ${tipo === 'pelicula' ? '' : '- ' + badge} -->
+      <article style="--avarage-color: ${color}">
+        <span class="episode-badge">${badge}</span>
+        <div class="video-container">
+          <iframe src="${enlace}" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>${titulo}</h3>
+          <button class="watch-btn" onclick="window.open('${enlace}', '_blank')">Ver en Rave</button>
+        </div>
+      </article>\n\n`;
+                
+                // Agregar al código final
+                codigoFinal += codigo;
+                resultadoTextarea.value = codigoFinal;
+                
+                // Limpiar campos (excepto tipo y serie)
+                document.getElementById('numero').value = '';
+                document.getElementById('titulo').value = '';
+                document.getElementById('enlace').value = '';
+                
+                // Enfocar siguiente campo
+                if (tipo === 'episodio') {
+                    document.getElementById('numero').focus();
+                } else {
+                    document.getElementById('titulo').focus();
+                }
+            });
+            
+            finalizarBtn.addEventListener('click', function() {
+                formulario.style.display = 'none';
+                iniciarBtn.style.display = 'block';
+                resultadoTextarea.focus();
+                resultadoTextarea.select();
+            });
+            
+            copiarBtn.addEventListener('click', function() {
+                resultadoTextarea.select();
+                document.execCommand('copy');
+                
+                // Efecto visual al copiar
+                const originalText = copiarBtn.textContent;
+                copiarBtn.textContent = "¡Copiado!";
+                copiarBtn.style.backgroundColor = "#388E3C";
+                
+                setTimeout(() => {
+                    copiarBtn.textContent = originalText;
+                    copiarBtn.style.backgroundColor = "";
+                }, 2000);
+            });
+            
+            // Manejar cambio de tipo
+            document.getElementById('tipo').addEventListener('change', function() {
+                document.getElementById('numero').disabled = this.value === 'pelicula';
+            });
+        });
+    </script>
+</body>
+</html>
