@@ -298,6 +298,8 @@
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(var(--min-card-width), 1fr));
     padding: 1rem;
+    will-change: transform;
+    contain: content;
   }
 
   article {
@@ -314,6 +316,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 
   article:hover {
