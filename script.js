@@ -1,26 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.movies-filter-nav button');
+  const sections = document.querySelectorAll('.movies-section');
 
-    // Efecto de carga para las tarjetas
-    const cards = document.querySelectorAll('.content-card');
-    cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = `all 0.5s ease ${index * 0.1}s`;
-      
-      setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, 100);
+  function showSection(filter) {
+    sections.forEach(section => {
+      if (filter === 'todas' || section.dataset.section === filter) {
+        section.classList.add('active');
+      } else {
+        section.classList.remove('active');
+      }
     });
-  
-    // Efecto hover mejorado para enlaces
-    const links = document.querySelectorAll('.content-link');
-    links.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        link.style.transform = 'translateX(5px)';
-      });
-      link.addEventListener('mouseleave', () => {
-        link.style.transform = 'translateX(0)';
-      });
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.movies-filter-nav button[data-filter="${filter}"]`).classList.add('active');
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      showSection(btn.dataset.filter);
     });
   });
+
+  // Mostrar todas al cargar
+  showSection('todas');
+});

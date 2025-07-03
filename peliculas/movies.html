@@ -13,154 +13,163 @@
       <a href="../index.html" class="title-link">
         <h1>Películas</h1>
       </a>
+      <nav class="movies-filter-nav">
+        <button data-filter="videojuegos">Videojuegos</button>
+        <button data-filter="animacion">Animación</button>
+        <button data-filter="musicales">Musicales</button>
+        <button data-filter="coreanas">Coreanas</button>
+        <button data-filter="todas" class="active">Todas</button>
+      </nav>
     </header>
 
     <div class="movies-grid">
-      
-      <!-- Sonic 1 -->
-      <article style="--avarage-color: #8B4513">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe loading="lazy" src="https://rumble.com/embed/v6qodlh/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Sonic 1: La Película</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qodlh/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-      
-      <!-- Sonic 2 -->
-      <article style="--avarage-color: #8B4513">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe loading="lazy" src="https://rumble.com/embed/v6qp0w1/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Sonic 2: La Película</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qp0w1/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-      
-      <!-- Sonic 3 -->
-      <article style="--avarage-color: #A0522D">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe loading="lazy" src="https://rumble.com/embed/v6qwrob/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Sonic 3: La Película</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qwrob/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-
-      <!-- Detective Pikachu -->
-      <article style="--avarage-color: #A0522D">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe loading="lazy" src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Pokémon: Detective Pikachu</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-
-      <!-- Super Mario Bros  -->
-      <article  style="--avarage-color: #8B4513">
+      <!-- SECCIÓN VIDEOJUEGOS -->
+      <section class="movies-section" data-section="videojuegos">
+        <!-- Sonic 1 -->
+        <article style="--avarage-color: #8B4513">
           <span class="episode-badge">Película</span>
           <div class="video-container">
-              <iframe loading="lazy" src="https://rumble.com/embed/v6qybft/?pub=4lcv1n" allowfullscreen></iframe>
+            <iframe loading="lazy" src="https://rumble.com/embed/v6qodlh/?pub=4lcv1n" allowfullscreen></iframe>
           </div>
           <div class="video-info">
-              <h3>Super Mario Bros</h3>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qybft/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            <h3>Sonic 1: La Película</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qodlh/?pub=4lcv1n', '_blank')">Ver en Rave</button>
           </div>
-      </article>
-      
-      <!-- El Gran Showman  -->
-      <article  style="--avarage-color: #8B4513">
+        </article>
+        <!-- Sonic 2 -->
+        <article style="--avarage-color: #8B4513">
           <span class="episode-badge">Película</span>
           <div class="video-container">
-              <iframe loading="lazy" src="https://rumble.com/embed/v6rlimd/?pub=4lcv1n" allowfullscreen></iframe>
+            <iframe loading="lazy" src="https://rumble.com/embed/v6qp0w1/?pub=4lcv1n" allowfullscreen></iframe>
           </div>
           <div class="video-info">
-              <h3>El Gran Showman</h3>
-              <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6rlimd/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+            <h3>Sonic 2: La Película</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qp0w1/?pub=4lcv1n', '_blank')">Ver en Rave</button>
           </div>
-      </article>
-  
-      <!-- La La Land  -->
-      <article style="--avarage-color: #8B4513">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe src="https://rumble.com/embed/v6rv6oh/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>La La Land</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6rv6oh/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
+        </article>
+        <!-- Sonic 3 -->
+        <article style="--avarage-color: #A0522D">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe loading="lazy" src="https://rumble.com/embed/v6qwrob/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Sonic 3: La Película</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qwrob/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        <!-- Detective Pikachu -->
+        <article style="--avarage-color: #A0522D">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe loading="lazy" src="https://rumble.com/embed/v6qjs21/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Pokémon: Detective Pikachu</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qjs21/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        <!-- Super Mario Bros -->
+        <article style="--avarage-color: #8B4513">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe loading="lazy" src="https://rumble.com/embed/v6qybft/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Super Mario Bros</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6qybft/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+      </section>
 
-      <!-- My Little Pony: Esquestria Girls  -->
-      <article style="--avarage-color: #8B4513">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe src="https://rumble.com/embed/v6t1dgx/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>My Little Pony: Esquestria Girls</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6t1dgx/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
+      <!-- SECCIÓN ANIMACIÓN -->
+      <section class="movies-section" data-section="animacion">
+        <!-- Encanto -->
+        <article style="--avarage-color: #CD853F">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6swkql/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Encanto</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6swkql/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        <!-- Tinker Bell: Hadas y Piratas -->
+        <article style="--avarage-color: #D2B48C">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6sf26t/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Tinker Bell: Hadas y Piratas</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6sf26t/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        <!-- My Little Pony: Esquestria Girls -->
+        <article style="--avarage-color: #8B4513">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6t1dgx/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>My Little Pony: Esquestria Girls</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6t1dgx/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+      </section>
 
-      <!-- Kpop Demon Hunter  -->
-      <article style="--avarage-color: #A0522D">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe src="https://rumble.com/embed/v6szu95/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Kpop Demon Hunter</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6szu95/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
+      <!-- SECCIÓN MUSICALES -->
+      <section class="movies-section" data-section="musicales">
+        <!-- El Gran Showman -->
+        <article style="--avarage-color: #8B4513">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe loading="lazy" src="https://rumble.com/embed/v6rlimd/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>El Gran Showman</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6rlimd/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        <!-- La La Land -->
+        <article style="--avarage-color: #8B4513">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6rv6oh/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>La La Land</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6rv6oh/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+      </section>
 
-      <!-- Encanto  -->
-      <article style="--avarage-color: #CD853F">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe src="https://rumble.com/embed/v6swkql/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Encanto</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6swkql/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-
-      <!-- Tinker Bell: Hadas y Piratas  -->
-      <article style="--avarage-color: #D2B48C">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe src="https://rumble.com/embed/v6sf26t/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>Tinker Bell: Hadas y Piratas</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6sf26t/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-
-      <!-- La Doncella (2016)  -->
-      <article style="--avarage-color: #BC8F8F">
-        <span class="episode-badge">Película</span>
-        <div class="video-container">
-          <iframe src="https://rumble.com/embed/v6sb2mj/?pub=4lcv1n" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3>La Doncella (2016)</h3>
-          <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6sb2mj/?pub=4lcv1n', '_blank')">Ver en Rave</button>
-        </div>
-      </article>
-      
+      <!-- SECCIÓN COREANAS -->
+      <section class="movies-section" data-section="coreanas">
+        <!-- La Doncella (2016) -->
+        <article style="--avarage-color: #BC8F8F">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6sb2mj/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>La Doncella (2016)</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6sb2mj/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+        <!-- Kpop Demon Hunter -->
+        <article style="--avarage-color: #A0522D">
+          <span class="episode-badge">Película</span>
+          <div class="video-container">
+            <iframe src="https://rumble.com/embed/v6szu95/?pub=4lcv1n" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Kpop Demon Hunter</h3>
+            <button class="watch-btn" onclick="window.open('https://rumble.com/embed/v6szu95/?pub=4lcv1n', '_blank')">Ver en Rave</button>
+          </div>
+        </article>
+      </section>
     </div>
     <footer>
       <p>© RaveDramas - Películas</p>

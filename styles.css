@@ -293,14 +293,14 @@
   }
 
   /* Estilos para páginas de contenido */
-  .series-content, .movies-grid {
+  /*.series-content, .movies-grid {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(var(--min-card-width), 1fr));
     padding: 1rem;
     will-change: transform;
     contain: content;
-  }
+  }*/
 
   article {
     --deg: 0.8deg;
@@ -422,5 +422,184 @@
 
   .hidden {
     display: none;
+  }
+
+  /* Agrega esto a tu styles.css */
+  .movies-grid {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* NO display: grid aquí */
+  }
+
+  .movies-section {
+    display: none;
+  }
+  .movies-section.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    margin-bottom: 2.5rem;
+  }
+  .movies-filter-nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0 2rem 0;
+    flex-wrap: wrap;
+  }
+  .movies-filter-nav button {
+    background: #f5f5f5;
+    color: #8B4513;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .movies-filter-nav button.active,
+  .movies-filter-nav button:hover {
+    background: #e0d3c2;
+  }
+
+  /* Tarjeta uniforme para ambas secciones */
+  .series-content article,
+  .movies-section article {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 12px var(--shadow);
+    border: var(--border-size) solid var(--border);
+    padding: 1.2rem 1rem 1.5rem 1rem;
+    width: 100%;
+    max-width: 340px;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .series-content article:hover,
+  .movies-section article:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 6px 24px var(--shadow);
+  }
+
+  /* Video siempre igual */
+  .video-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #2222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Info y botón siempre abajo */
+  .video-info {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+  }
+
+  .episode-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--accent);
+    color: var(--badge-text);
+    padding: 0.3em 1em;
+    border-radius: 12px;
+    font-size: 0.9em;
+    z-index: 2;
+    font-family: 'Troubleside';
+    box-shadow: 1px 1px 2px var(--shadow);
+  }
+
+  .watch-btn {
+    background: var(--accent);
+    color: var(--badge-text);
+    border: none;
+    border-radius: 8px;
+    padding: 0.7em 1.2em;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Troubleside';
+    box-shadow: 1px 1px 2px var(--shadow);
+    margin-top: auto;
+    text-align: center;
+  }
+  .watch-btn:hover {
+    background: #a0522d;
+    color: #fff;
+  }
+
+  /* Título de la película/episodio */
+  .video-info h3 {
+    font-size: 1.1em;
+    margin: 0.5em 0 0.2em 0;
+    color: var(--text);
+    font-family: 'Troubleside';
+    font-weight: 600;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .series-content,
+    .movies-section {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .series-content,
+    .movies-section {
+      grid-template-columns: 1fr;
+    }
+    .series-content article,
+    .movies-section article {
+      max-width: 98vw;
+      min-height: 350px;
+    }
+  }
+
+  /* Modo oscuro */
+  body.dark,
+  body[data-theme="dark"] {
+    --surface: #232323;
+    --text: #f5e9d6;
+    --border: #3A3A3A;
+    --shadow: rgba(0,0,0,0.2);
+    background: #181818;
+  }
+  body.dark .series-content article,
+  body.dark .movies-section article,
+  body[data-theme="dark"] .series-content article,
+  body[data-theme="dark"] .movies-section article {
+    background: var(--surface);
+    color: var(--text);
+  }
+  body.dark .video-info h3,
+  body[data-theme="dark"] .video-info h3 {
+    color: var(--text);
   }
 }
