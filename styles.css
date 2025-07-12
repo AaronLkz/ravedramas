@@ -566,13 +566,13 @@
   /* Responsive */
   @media (max-width: 900px) {
     .series-content,
-    .movies-section {
+    .movies-grid {
       grid-template-columns: 1fr 1fr;
     }
   }
   @media (max-width: 600px) {
     .series-content,
-    .movies-section {
+    .movies-grid {
       grid-template-columns: 1fr;
     }
     .series-content article,
@@ -601,5 +601,18 @@
   body.dark .video-info h3,
   body[data-theme="dark"] .video-info h3 {
     color: var(--text);
+  }
+
+  .series-content {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-width, 290px), 1fr));
+    padding: 1rem;
+    justify-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    will-change: transform;
+    contain: content;
   }
 }
