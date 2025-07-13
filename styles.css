@@ -451,18 +451,19 @@
     flex-wrap: wrap;
   }
   .movies-filter-nav button {
-    background: #f5f5f5;
-    color: #8B4513;
+    background: var(--surface);
+    color: var(--accent);
     border: none;
     border-radius: 20px;
     padding: 0.5rem 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
   }
   .movies-filter-nav button.active,
   .movies-filter-nav button:hover {
-    background: #e0d3c2;
+    background: var(--border);
+    color: var(--accent);
   }
 
   /* Tarjeta uniforme para ambas secciones */
