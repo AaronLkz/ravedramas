@@ -292,16 +292,6 @@
     }
   }
 
-  /* Estilos para páginas de contenido */
-  /*.series-content, .movies-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(var(--min-card-width), 1fr));
-    padding: 1rem;
-    will-change: transform;
-    contain: content;
-  }*/
-
   article {
     --deg: 0.8deg;
     --y: 0;
